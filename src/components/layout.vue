@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-on:click="resetComponent()">
         <div class="app-head">
             <div class="app-head-inner">
                 <router-link :to="{path: '/'}">
@@ -44,7 +44,7 @@
 <script>
 import Dailog from './base/dialog'
 import LogForm from './logform'
-
+import { eventBus } from '../eventBus'
 export default {
     components: {
         MyDialog: Dailog,
@@ -75,6 +75,10 @@ export default {
             console.log(data);
             this.closeDialog('isShowLogDialog');
             this.username = data.username;
+        },
+        resetComponent () {
+            
+            eventBus.$emit('reset-component');
         }
     }
 }
